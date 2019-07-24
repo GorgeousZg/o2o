@@ -1,7 +1,6 @@
 package com.imooc.o2o.entity;
 
 import java.util.Date;
-import java.util.List;
 /**
  * 店铺
  * @author Gorgeous

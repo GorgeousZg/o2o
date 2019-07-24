@@ -14,5 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //告诉junti spring配置文件的位置
 @ContextConfiguration({"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})
 public class BaseTest {
+	public BaseTest(){
+		System.out.println("123");
+	}
 	
 }

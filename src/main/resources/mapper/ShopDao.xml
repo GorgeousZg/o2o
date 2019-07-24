@@ -16,4 +16,21 @@
 		#{priority},#{createTime},#{lastEditTime},
 		#{enableStatus},#{advice})
     </insert>
+    <update id="updateShop" parameterType="shop">
+       update tb_shop
+        <set>
+            <if test="shopName != null">shop_name=#{shopName},</if>
+			<if test="shopDesc != null">shop_desc=#{shopDesc},</if>
+			<if test="shopAddr != null">shop_addr=#{shopAddr},</if>
+			<if test="phone != null">phone=#{phone},</if>
+			<if test="shopImg != null">shop_img=#{shopImg},</if>
+			<if test="priority != null">priority=#{priority},</if>
+			<if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
+			<if test="enableStatus != null">enable_status=#{enableStatus},</if>
+			<if test="advice != null">advice=#{advice},</if>
+			<if test="area != null">area_id=#{area.areaId},</if>
+			<if test="shopCategory != null">shop_category_id=#{shopCategory.shopCategoryId}</if>
+        </set>
+        where shop_id=#{shopId}
+    </update>
 </mapper>

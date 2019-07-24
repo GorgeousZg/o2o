@@ -1,9 +1,10 @@
 package com.imooc.o2o.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,7 @@ import com.imooc.o2o.entity.ShopCategory;
 public class ShopDaoTest extends BaseTest{
  @Autowired
  private ShopDao shopDao;
+ 
  @Test
  public void testInsertShop(){
 	 Shop shop=new Shop();
@@ -38,6 +40,19 @@ public class ShopDaoTest extends BaseTest{
 	 shop.setEnableStatus(1);
 	 shop.setAdvice("…Û∫À÷–");
 	 int effectedNum=shopDao.insertShop(shop);
+	 assertEquals(1,effectedNum);
+ }
+ 
+ 
+ 
+ @Test
+ public void testUpdateShop(){
+	 Shop shop=new Shop();
+	 shop.setShopId(1l);
+	 shop.setShopDesc("≤‚ ‘√Ë ˆ");
+	 shop.setShopAddr("≤‚ ‘µÿ÷∑");
+	 shop.setLastEditTime(new Date());
+	 int effectedNum=shopDao.updateShop(shop);
 	 assertEquals(1,effectedNum);
  }
 }
