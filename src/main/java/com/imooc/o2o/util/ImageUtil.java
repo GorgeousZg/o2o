@@ -71,4 +71,25 @@ public class ImageUtil {
 	public static void main(String[] args) throws IOException {
 		Thumbnails.of(new File("C:/Users/Gorgeous/Desktop/win.jpg")).size(200, 200).watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File("C:/homeproject/o2o/src/main/resources/watermake.jpg")),0.25f).outputQuality(0.8f).toFile("C:/Users/Gorgeous/Desktop/winnew.jpg");;
 	}
+	
+	/**
+	 * storePath是文件的路径还是目录的路径
+	 * 如果storePath是文件路径则删除该文件
+	 * 如果storePath是目录路径则删除该目录下的所有文件
+	 * @param storePath
+	 */
+	public static void deleteFileOrPath(String storePath){
+		String getImgBasePath=PathUtil.getImgBasePath();
+		System.out.println("getImgBasePathstorePath-->"+getImgBasePath+storePath);
+		File fileOrPath=new File(getImgBasePath+storePath);
+		if(fileOrPath.exists()){
+			if(fileOrPath.isDirectory()){
+				File files[]=File.listRoots();
+				for(int i=0;i<files.length;i++){
+					files[i].delete();
+				}
+			}
+			fileOrPath.delete();
+		}
+	}
 }

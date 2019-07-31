@@ -3,6 +3,7 @@ package com.imooc.o2o.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,6 +20,36 @@ public class ShopDaoTest extends BaseTest{
  private ShopDao shopDao;
  
  @Test
+ public void testQueryShopList(){
+	 Shop shopCondition=new Shop();
+	 PersonInfo owner=new PersonInfo();
+	 owner.setUserid(1L);
+	 shopCondition.setOwner(owner);
+	 List<Shop> shopList=shopDao.queryShopList(shopCondition, 0, 5);
+	 int count=shopDao.queryShopCount(shopCondition);
+	 System.out.println("店铺列表的大小-->"+shopList.size());
+	 System.out.println("店铺总数"+count);
+	 ShopCategory sc=new ShopCategory();
+	 sc.setShopCategoryId(3L);
+	 shopCondition.setShopCategory(sc);
+	  shopList=shopDao.queryShopList(shopCondition, 0, 2);
+	  count=shopDao.queryShopCount(shopCondition);
+	  System.out.println("xin店铺列表的大小-->"+shopList.size());
+	  System.out.println("xin店铺总数"+count);
+ }
+ 
+ @Test
+ @Ignore
+ public void testQueryByShopId(){
+	 long shopId=44;
+	 Shop shop=shopDao.queryByShopId(shopId);
+	 System.out.println("areaId"+shop.getArea().getAreaId());
+	 System.out.println("areaName"+shop.getArea().getAreaName());
+ }
+ 
+ 
+ @Test
+ @Ignore
  public void testInsertShop(){
 	 Shop shop=new Shop();
 	 PersonInfo owner=new PersonInfo();
@@ -46,6 +77,7 @@ public class ShopDaoTest extends BaseTest{
  
  
  @Test
+ @Ignore
  public void testUpdateShop(){
 	 Shop shop=new Shop();
 	 shop.setShopId(1l);
