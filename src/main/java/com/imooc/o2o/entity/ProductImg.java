@@ -2,7 +2,7 @@ package com.imooc.o2o.entity;
 
 import java.util.Date;
 /**
- * 图片实体类
+ * 商品详情图片实体类
  * @author Gorgeous
  *
  */

@@ -3,7 +3,11 @@ package com.imooc.o2o.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * 商品实体类
+ * @author Gorgeous
+ *
+ */
 public class Product implements Serializable{
 	
 	/**

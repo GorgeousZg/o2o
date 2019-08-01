@@ -3,7 +3,9 @@ package com.imooc.o2o.service;
 
 
 import java.io.InputStream;
+import java.util.List;
 
+import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Shop;
 
@@ -23,7 +25,7 @@ public interface ShopService {
 	 * @param fileName
 	 * @return
 	 */
-	ShopExecution addShop(Shop shop,InputStream showImgInputSteam,String fileName);
+	ShopExecution addShop(Shop shop,ImageHolder thumbnail);
 	/**
 	 * 更新店铺信息，包括对图片的处理
 	 * 
@@ -35,7 +37,7 @@ public interface ShopService {
 	 * @return
 	 * @throws RuntimeException
 	 */
-	ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream,String fileName) throws RuntimeException;
+	ShopExecution modifyShop(Shop shop,ImageHolder thumbnail) throws RuntimeException;
 	/**
 	 * 查询指定店铺信息
 	 * 

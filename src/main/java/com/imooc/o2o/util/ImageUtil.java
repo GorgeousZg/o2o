@@ -2,12 +2,13 @@ package com.imooc.o2o.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+
+import com.imooc.o2o.dto.ImageHolder;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -17,14 +18,14 @@ public class ImageUtil {
 	private static final SimpleDateFormat sDate_Format=new SimpleDateFormat("yyyyMMddHHmmss");
 	private static final Random r=new Random();
 	
-	public static String generateThumbnail(InputStream thumbnailInputStream,String fileName,String targetAddr){
+	public static String generateThumbnail(ImageHolder thumbnail,String targetAddr){
 		String realFileName=getRandomFileName();
-		String extension=getFileExtension(fileName);
+		String extension=getFileExtension(thumbnail.getImageName());
 		makeDirPath(targetAddr);
 		String relativeAddr=targetAddr+realFileName+extension;
 		File dest=new File(PathUtil.getImgBasePath()+relativeAddr);
 		try{
-			Thumbnails.of(thumbnailInputStream).size(200, 200)
+			Thumbnails.of(thumbnail.getImage()).size(200, 200)
 			.watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File("C:/homeproject/o2o/src/main/resources/watermake.jpg")),0.25f).toFile(dest);
 		}catch (IOException e) {
 			e.printStackTrace();
