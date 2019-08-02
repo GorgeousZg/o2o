@@ -133,5 +133,15 @@ public class Product implements Serializable{
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
+	
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc
+				+ ", imgAddr=" + imgAddr + ", normalPrice=" + normalPrice + ", promotionPrice=" + promotionPrice
+				+ ", priority=" + priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime
+				+ ", enableStatus=" + enableStatus + ", productImgList=" + productImgList + ", productCategory="
+				+ productCategory + ", shop=" + shop + "]";
+	}
+	
 
 }

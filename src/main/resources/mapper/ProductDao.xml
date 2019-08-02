@@ -18,26 +18,12 @@
 			javaType="com.imooc.o2o.entity.ProductCategory">
 			<id column="product_category_id" property="productCategoryId" />
 			<result column="product_category_name" property="productCategoryName" />
-			<result column="product_category_desc" property="productCategoryDesc" />
-			<result column="priority" property="priority" />
-			<result column="create_time" property="createTime" />
 		</association>
 		<association property="shop" column="shop_id"
 			javaType="com.imooc.o2o.entity.Shop">
 			<id column="shop_id" property="shopId" />
 			<result column="owner_id" property="ownerId" />
 			<result column="shop_name" property="shopName" />
-			<result column="shop_desc" property="shopDesc" />
-			<result column="shop_addr" property="shopAddr" />
-			<result column="phone" property="phone" />
-			<result column="shop_img" property="shopImg" />
-			<result column="longitude" property="longitude" />
-			<result column="latitude" property="latitude" />
-			<result column="priority" property="priority" />
-			<result column="create_time" property="createTime" />
-			<result column="last_edit_time" property="lastEditTime" />
-			<result column="enable_status" property="enableStatus" />
-			<result column="advice" property="advice" />
 		</association>
 		<collection property="productImgList" column="product_id"
 			ofType="com.imooc.o2o.entity.ProductImg">
@@ -49,9 +35,9 @@
 			<result column="product_id" property="productId" />
 		</collection>
 	</resultMap>
-	
-	
-	
+
+
+
 	<select id="queryProductList" resultMap="productMap">
 		SELECT
 		product_id,
@@ -102,7 +88,7 @@
 				 and productCondition.shop.shopId!=null">
 				and shop_id = #{productCondition.shop.shopId}
 			</if>
-			 <if
+			<if
 				test="productCondition.productCategory!=null
 				 and productCondition.productCategory.productCategoryId!=null">
 				and product_category_id =
@@ -119,7 +105,41 @@
 		</where>
 	</select>
 	
-	
+	<select id="queryProductById" resultMap="productMap"
+		parameterType="Long">
+		<!-- 具体的sql -->
+		SELECT
+		p.product_id,
+		p.product_name,
+		p.product_desc,
+		p.img_addr,
+		p.normal_price,
+		p.promotion_price,
+		p.priority,
+		p.create_time,
+		p.last_edit_time,
+		p.enable_status,
+		p.product_category_id,
+		p.shop_id,
+		pm.product_img_id,
+		pm.img_addr,
+		pm.img_desc,
+		pm.priority,
+		pm.create_time
+		FROM
+		tb_product p
+		LEFT JOIN
+		tb_product_img pm
+		ON
+		p.product_id =
+		pm.product_id
+		WHERE
+		p.product_id =
+		#{productId}
+		ORDER BY
+		pm.priority DESC
+	</select>
+
 	<select id="queryProductByProductId" resultMap="productMap"
 		parameterType="Long">
 		<!-- 具体的sql -->
@@ -155,7 +175,7 @@
 		ORDER BY
 		pm.priority DESC
 	</select>
-	
+
 	<insert id="insertProduct" parameterType="product"
 		useGeneratedKeys="true" keyProperty="productId" keyColumn="product_id">
 		INSERT INTO
@@ -169,8 +189,8 @@
 		#{lastEditTime},#{enableStatus},#{productCategory.productCategoryId},
 		#{shop.shopId})
 	</insert>
-	
-	<update id="updateProduct" parameterType="com.imooc.o2o.entity.Product"
+
+	<update id="updateProduct" parameterType="product"
 		keyProperty="product_id" useGeneratedKeys="true">
 		UPDATE tb_product
 		<set>
@@ -182,7 +202,6 @@
 			<if test="priority != null">priority=#{priority},</if>
 			<if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
 			<if test="enableStatus != null">enable_status=#{enableStatus},</if>
-			<if test="point != null">point=#{point},</if>
 			<if
 				test="productCategory != null
 				 and productCategory.productCategoryId != null">

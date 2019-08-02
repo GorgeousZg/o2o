@@ -1,0 +1,10 @@
+2019-08-03 00:21:39.240 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300213977781.jpg
+2019-08-03 00:21:39.247 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current complete addr isC:\projectdev\image\upload\images\item\shop\45\2019080300213977781.jpg
+2019-08-03 00:21:39.248 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - basePath is/C:/homeproject/o2o/target/test-classes/
+2019-08-03 00:21:39.665 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300213994483.jpg
+2019-08-03 00:21:39.713 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300213957006.jpg
+2019-08-03 00:25:46.804 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300254653603.jpg
+2019-08-03 00:25:46.807 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current complete addr isC:\projectdev\image\upload\images\item\shop\45\2019080300254653603.jpg
+2019-08-03 00:25:46.807 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - basePath is/C:/homeproject/o2o/target/test-classes/
+2019-08-03 00:25:47.128 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300254760125.jpg
+2019-08-03 00:25:47.184 [%PARSER_ERROR[thead]] DEBUG com.imooc.o2o.util.ImageUtil - current relativeAddr is\upload\images\item\shop\45\2019080300254793017.jpg

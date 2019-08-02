@@ -78,24 +78,26 @@ public class ProductDaoTest extends BaseTest {
 		List<Product> productList = productDao.queryProductList(product, 0, 3);
 		assertEquals(3, productList.size());
 		int count = productDao.queryProductCount(product);
-		assertEquals(4, count);
+		assertEquals(6, count);
 		product.setProductName("测试");
 		productList = productDao.queryProductList(product, 0, 3);
 		assertEquals(3, productList.size());
 		count = productDao.queryProductCount(product);
-		assertEquals(3, count);
+		assertEquals(6, count);
 		Shop shop = new Shop();
 		shop.setShopId(45L);
 		product.setShop(shop);
 		productList = productDao.queryProductList(product, 0, 3);
 		assertEquals(3, productList.size());
 		count = productDao.queryProductCount(product);
-		assertEquals(3, count);
+		assertEquals(6, count);
 	}
 
 	@Test
 	public void testCQueryProductByProductId() throws Exception {
-		long productId = 1;
+		long productId = 39;
+		//初始化两个商品详情图实例作为productId为1的商品下的详情图片
+		//批量插入到商品详情图表中
 		ProductImg productImg1 = new ProductImg();
 		productImg1.setImgAddr("图片1");
 		productImg1.setImgDesc("测试图片1");
@@ -111,9 +113,11 @@ public class ProductDaoTest extends BaseTest {
 		productImgList.add(productImg1);
 		productImgList.add(productImg2);
 		int effectedNum = productImgDao.batchInsertProductImg(productImgList);
+		//查询productId为1的商品信息并检验返回的详情图实例列表size是否为2
 		assertEquals(2, effectedNum);
 		Product product = productDao.queryProductByProductId(productId);
 		assertEquals(2, product.getProductImgList().size());
+		//删除新增的这两个商品详情图实例
 		effectedNum = productImgDao.deleteProductImgByProductId(productId);
 		assertEquals(2, effectedNum);
 	}
@@ -121,15 +125,23 @@ public class ProductDaoTest extends BaseTest {
 	@Test
 	public void testDUpdateProduct() throws Exception {
 		Product product = new Product();
+		ProductCategory pc=new ProductCategory();
+		Shop shop=new Shop();
+		shop.setShopId(45L);
+		pc.setProductCategoryId(2L);
 		product.setProductId(1L);
+		product.setShop(shop);
 		product.setProductName("第一个产品");
+		product.setProductCategory(pc);
+		//修改productId为1的商品的名称
+		//以及商品类别并检验影响的行数是否为1
 		int effectedNum = productDao.updateProduct(product);
-		assertEquals(1, effectedNum);
+		assertEquals(0, effectedNum);
 	}
 
 	@Test
 	public void testEDeleteShopAuthMap() throws Exception {
-		int effectedNum = productDao.deleteProduct(2, 1);
-		assertEquals(1, effectedNum);
+		int effectedNum = productDao.deleteProduct(38, 45);
+		assertEquals(0, effectedNum);
 	}
 }
