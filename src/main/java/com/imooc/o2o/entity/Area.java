@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Area {
 	//ID
-	private Integer areaId;
+	private long areaId;
 	//名称
 	private String areaName;
 	//权重
@@ -18,10 +18,10 @@ public class Area {
 	//更新时间
 	private Date lastEditTime;
 	
-	public Integer getAreaId() {
+	public long getAreaId() {
 		return areaId;
 	}
-	public void setAreaId(Integer areaId) {
+	public void setAreaId(long areaId) {
 		this.areaId = areaId;
 	}
 	public String getAreaName() {

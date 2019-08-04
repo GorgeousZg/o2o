@@ -27,6 +27,7 @@ public class ProductDaoTest extends BaseTest {
 	private ProductImgDao productImgDao;
 
 	@Test
+	@Ignore
 	public void testAInsertProduct() throws Exception {
 		Shop shop1 = new Shop();
 		shop1.setShopId(45L);
@@ -73,6 +74,7 @@ public class ProductDaoTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testBQueryProductList() throws Exception {
 		Product product = new Product();
 		List<Product> productList = productDao.queryProductList(product, 0, 3);
@@ -94,6 +96,7 @@ public class ProductDaoTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testCQueryProductByProductId() throws Exception {
 		long productId = 39;
 		//初始化两个商品详情图实例作为productId为1的商品下的详情图片
@@ -123,6 +126,7 @@ public class ProductDaoTest extends BaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testDUpdateProduct() throws Exception {
 		Product product = new Product();
 		ProductCategory pc=new ProductCategory();
@@ -138,8 +142,14 @@ public class ProductDaoTest extends BaseTest {
 		int effectedNum = productDao.updateProduct(product);
 		assertEquals(0, effectedNum);
 	}
-
 	@Test
+	public void testEUpdateProductCategoryToNull(){
+		//将productCategoryId为2的商品类别下面的商品的商品类别置为空
+		int effectedNum=productDao.updateProductCategoryToNull(17);
+		assertEquals(1,effectedNum);
+	}
+	@Test
+	@Ignore
 	public void testEDeleteShopAuthMap() throws Exception {
 		int effectedNum = productDao.deleteProduct(38, 45);
 		assertEquals(0, effectedNum);

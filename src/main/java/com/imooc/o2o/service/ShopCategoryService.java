@@ -5,5 +5,10 @@ import java.util.List;
 import com.imooc.o2o.entity.ShopCategory;
 
 public interface ShopCategoryService {
-	List<ShopCategory> getShopCategoryList(ShopCategory shopCategory);
+	/**
+	 * 根据查询条件获取
+	 * @param shopCategoryCondition
+	 * @return
+	 */
+	List<ShopCategory> getShopCategoryList(ShopCategory shopCategoryCondition);
 }

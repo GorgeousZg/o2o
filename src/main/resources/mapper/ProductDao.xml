@@ -211,9 +211,9 @@
 		WHERE product_id = #{productId}
 		AND shop_id=#{shop.shopId}
 	</update>
-	<update id="updateProductCategoryToNull" parameterType="Long"
-		keyProperty="product_id" useGeneratedKeys="true">
-		UPDATE tb_product
+	<update id="updateProductCategoryToNull" parameterType="Long">
+		UPDATE 
+		tb_product
 		SET
 		product_category_id = null
 		WHERE product_category_id =

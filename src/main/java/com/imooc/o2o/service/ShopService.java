@@ -2,9 +2,6 @@ package com.imooc.o2o.service;
 
 
 
-import java.io.InputStream;
-import java.util.List;
-
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Shop;
