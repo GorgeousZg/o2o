@@ -38,7 +38,7 @@ public class ImageUtil {
 		try {
 			Thumbnails.of(thumbnail.getImage()).size(200, 200)
 					.watermark(Positions.BOTTOM_RIGHT,
-							ImageIO.read(new File("C:/homeproject/o2o/src/main/resources/watermake.jpg")), 0.25f)
+							ImageIO.read(new File("D:/eclipsework/o2o/src/main/resources/watermake.jpg")), 0.25f)
 					.toFile(dest);
 		} catch (IOException e) {
 			logger.error(e.toString());
@@ -138,7 +138,7 @@ public class ImageUtil {
 					System.out.println(thumbnail.getImage());
 					Thumbnails.of(thumbnail.getImage()).size(337,640)
 					.watermark(Positions.BOTTOM_RIGHT,
-							ImageIO.read(new File("C:/homeproject/o2o/src/main/resources/watermake.jpg")), 0.25f)
+							ImageIO.read(new File("D:/eclipsework/o2o/src/main/resources/watermake.jpg")), 0.25f)
 					.toFile(dest);
 				} catch (IOException e) {
 					throw new RuntimeException("创建缩图片失败：" + e.toString());

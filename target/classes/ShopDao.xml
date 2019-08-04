@@ -115,39 +115,46 @@
 		tb_area a,
 		tb_shop_category sc
 		<where>
-			<if test="shopCondition.shopCategory!=null
+			<if test="shopCondition.shopId!=null">
+				and s.shop_id =
+				#{shopCondition.shopId}
+			</if>
+			<if
+				test="shopCondition.shopCategory!=null
 				 and shopCondition.shopCategory.shopCategoryId!=null">
 				and s.shop_category_id =
 				#{shopCondition.shopCategory.shopCategoryId}
 			</if>
-			
-			<if test="shopCondition.shopCategory!=null
+
+			<if
+				test="shopCondition.shopCategory!=null
 				 and shopCondition.shopCategory.parent!=null
-				 and shopCondition.shopCategory.shopCategoryId!=null">
-				and s.shop_category in (select shop_category_id from tb_shop_category
-				WHERE parent_id=#{shopCondition.shopCategory.shopCategoryId})
+				 and shopCondition.shopCategory.parent.shopCategoryId!=null">
+				and s.shop_category_id in (select shop_category_id from
+				tb_shop_category
+				WHERE
+				parent_id=#{shopCondition.shopCategory.parent.shopCategoryId})
 			</if>
-			
-			<if test="shopCondition.area!=null
+
+
+			<if
+				test="shopCondition.area!=null
 				 and shopCondition.area.areaId!=null">
 				and s.area_id =
 				#{shopCondition.area.areaId}
 			</if>
-			<if test="shopCondition.shopId!=null">
-				and s.shop_id = 
-				#{shopCondition.shopId}
-			</if>
-				<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
+			<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
 				'%#{name} %' ${name} 是不带单引号的，而#{name} 是带单引号的 -->
 			<if test="shopCondition.shopName!=null">
 				and s.shop_name like '%${shopCondition.shopName}%'
 			</if>
-			
+
 			<if test="shopCondition.enableStatus!=null">
 				and s.enable_status = #{shopCondition.enableStatus}
 			</if>
-			
-			<if test="shopCondition.owner!=null
+
+			<if
+				test="shopCondition.owner!=null
 				 and shopCondition.owner.userId!=null">
 				and s.owner_id =#{shopCondition.owner.userId}
 			</if>
@@ -160,48 +167,54 @@
 		s.priority DESC
 		LIMIT #{rowIndex},#{pageSize}
 	</select>
-	
+
 	<select id="queryShopCount" resultType="int">
-	    SELECT
-	    COUNT(1)
-	    	FROM
+		SELECT
+		COUNT(1)
+		FROM
 		tb_shop s,
 		tb_area a,
 		tb_shop_category sc
 		<where>
-			<if test="shopCondition.shopCategory!=null
+			<if
+				test="shopCondition.shopCategory!=null
 				 and shopCondition.shopCategory.shopCategoryId!=null">
 				and s.shop_category_id =
 				#{shopCondition.shopCategory.shopCategoryId}
 			</if>
-			
-			<if test="shopCondition.shopCategory!=null
+
+			<if
+				test="shopCondition.shopCategory!=null
 				 and shopCondition.shopCategory.parent!=null
-				 and shopCondition.shopCategory.shopCategoryId!=null">
-				and s.shop_category in (select shop_category_id from tb_shop_category
-				WHERE parent_id=#{shopCondition.shopCategory.shopCategoryId})
+				 and shopCondition.shopCategory.parent.shopCategoryId!=null">
+				and s.shop_category_id in (select shop_category_id from
+				tb_shop_category
+				WHERE
+				parent_id=#{shopCondition.shopCategory.parent.shopCategoryId})
 			</if>
-			
-			<if test="shopCondition.area!=null
+
+			<if
+				test="shopCondition.area!=null
 				 and shopCondition.area.areaId!=null">
 				and s.area_id =
 				#{shopCondition.area.areaId}
 			</if>
 			<if test="shopCondition.shopId!=null">
-				and s.shop_id = 
+				and s.shop_id =
 				#{shopCondition.shopId}
 			</if>
-				<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
+			<!-- 写like语句的时候 一般都会写成 like '% %' 在mybatis里面写就是应该是 like '%${name} %' 而不是 
 				'%#{name} %' ${name} 是不带单引号的，而#{name} 是带单引号的 -->
 			<if test="shopCondition.shopName!=null">
 				and s.shop_name like '%${shopCondition.shopName}%'
 			</if>
-			
+
 			<if test="shopCondition.enableStatus!=null">
 				and s.enable_status = #{shopCondition.enableStatus}
 			</if>
-			
-			<if test="shopCondition.owner!=null
+
+			<if
+				test="shopCondition.owner!=null
 				 and shopCondition.owner.userId!=null">
 				and s.owner_id =#{shopCondition.owner.userId}
 			</if>

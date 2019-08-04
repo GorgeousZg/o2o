@@ -1,7 +1,7 @@
 $(function() {
 	var loading = false;
 	var maxItems = 999;
-	var pageSize = 10;
+	var pageSize = 5;
 	var listUrl = '/o2o/frontend/listshops';
 	var searchDivUrl = '/o2o/frontend/listshopspageinfo';
 	var pageNum = 1;
@@ -9,7 +9,26 @@ $(function() {
 	var areaId = '';
 	var shopCategoryId = '';
 	var shopName = '';
-
+	Date.prototype.format = function(fmt) { 
+	     var o = { 
+	        "M+" : this.getMonth()+1,                 //月份 
+	        "d+" : this.getDate(),                    //日 
+	        "h+" : this.getHours(),                   //小时 
+	        "m+" : this.getMinutes(),                 //分 
+	        "s+" : this.getSeconds(),                 //秒 
+	        "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+	        "S"  : this.getMilliseconds()             //毫秒 
+	    }; 
+	    if(/(y+)/.test(fmt)) {
+	            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+	    }
+	     for(var k in o) {
+	        if(new RegExp("("+ k +")").test(fmt)){
+	             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+	         }
+	     }
+	    return fmt; 
+	}
 	function getSearchDivData() {
 		var url = searchDivUrl + '?' + 'parentId=' + parentId;
 		$
@@ -66,7 +85,7 @@ $(function() {
 							+ '</div>' + '</div>' + '</li>' + '</ul>'
 							+ '</div>' + '</div>' + '<div class="card-footer">'
 							+ '<p class="color-gray">'
-							+ new Date(item.lastEditTime).Format("yyyy-MM-dd")
+							+ new Date(item.lastEditTime).format("yyyy-MM-dd")
 							+ '更新</p>' + '<span>点击查看</span>' + '</div>'
 							+ '</div>';
 				});
@@ -150,4 +169,5 @@ $(function() {
 	});
 
 	$.init();
+	
 });

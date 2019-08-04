@@ -20,6 +20,7 @@ public class ShopDaoTest extends BaseTest {
 	private ShopDao shopDao;
 
 	@Test
+	@Ignore
 	public void testQueryShopList() {
 		Shop shopCondition = new Shop();
 		PersonInfo owner = new PersonInfo();
@@ -43,7 +44,7 @@ public class ShopDaoTest extends BaseTest {
 		Shop shopCondition = new Shop();
 		ShopCategory childCategory = new ShopCategory();
 		ShopCategory parentCategory = new ShopCategory();
-		parentCategory.setShopCategoryId(14L);
+		parentCategory.setShopCategoryId(12L);
 		childCategory.setParent(parentCategory);
 		shopCondition.setShopCategory(childCategory);
 		List<Shop> shopList = shopDao.queryShopList(shopCondition, 0, 5);
