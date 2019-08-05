@@ -1,25 +1,43 @@
 $(function() {
-	//加载符
+	// 加载符
 	var loading = false;
-	//分页允许返回的最大条数，超过此数则禁止访问后台
+	// 分页允许返回的最大条数，超过此数则禁止访问后台
 	var maxItems = 20;
-	//默认一页返回的商品数
+	// 默认一页返回的商品数
 	var pageSize = 10;
-	//列出商品列表的URL
+	// 列出商品列表的URL
 	var listUrl = '/o2o/frontend/listproductsbyshop';
-	//默认的页码
+	// 默认的页码
 	var pageNum = 1;
-	//从地址栏里获取ShopId
+	// 从地址栏里获取ShopId
 	var shopId = getQueryString('shopId');
 	var productCategoryId = '';
 	var productName = '';
-	//获取本店铺信息以及商品类别信息列表的URL
+	// 获取本店铺信息以及商品类别信息列表的URL
 	var searchDivUrl = '/o2o/frontend/listshopdetailpageinfo?shopId='
 			+ shopId;
-	//渲染出店铺基本信息以及商品类别列表以供搜索
-	getSearchDivData();
-	//预计加载10条商品信息
-	addItems(pageSize, pageNum);
+	
+	Date.prototype.format = function(fmt) { 
+	     var o = { 
+	        "M+" : this.getMonth()+1,                 //月份 
+	        "d+" : this.getDate(),                    //日 
+	        "h+" : this.getHours(),                   //小时 
+	        "m+" : this.getMinutes(),                 //分 
+	        "s+" : this.getSeconds(),                 //秒 
+	        "q+" : Math.floor((this.getMonth()+3)/3), //季度 
+	        "S"  : this.getMilliseconds()             //毫秒 
+	    }; 
+	    if(/(y+)/.test(fmt)) {
+	            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+	    }
+	     for(var k in o) {
+	        if(new RegExp("("+ k +")").test(fmt)){
+	             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+	         }
+	     }
+	    return fmt; 
+	}
+	
 	function getSearchDivData() {
 		var url = searchDivUrl;
 		$
@@ -29,9 +47,7 @@ $(function() {
 							if (data.success) {
 								var shop = data.shop;
 								$('#shop-cover-pic').attr('src', shop.shopImg);
-								$('#shop-update-time').html(
-										new Date(shop.lastEditTime)
-												.Format("yyyy-MM-dd"));
+								$('#shop-update-time').html(new Date(shop.lastEditTime).format("yyyy-MM-dd"));
 								$('#shop-name').html(shop.shopName);
 								$('#shop-desc').html(shop.shopDesc);
 								$('#shop-addr').html(shop.shopAddr);
@@ -51,8 +67,9 @@ $(function() {
 							}
 						});
 	}
-
-
+	// 渲染出店铺基本信息以及商品类别列表以供搜索
+	getSearchDivData();
+	
 	function addItems(pageSize, pageIndex) {
 		// 生成新条目的HTML
 		var url = listUrl + '?' + 'pageIndex=' + pageIndex + '&pageSize='
@@ -77,17 +94,17 @@ $(function() {
 							+ '</div>' + '</div>' + '</li>' + '</ul>'
 							+ '</div>' + '</div>' + '<div class="card-footer">'
 							+ '<p class="color-gray">'
-							+ new Date(item.lastEditTime).Format("yyyy-MM-dd")
+							+ new Date(item.lastEditTime).format("yyyy-MM-dd")
 							+ '更新</p>' + '<span>点击查看</span>' + '</div>'
 							+ '</div>';
 				});
 				$('.list-div').append(html);
 				var total = $('.list-div .card').length;
 				if (total >= maxItems) {
-					// 加载完毕，则注销无限加载事件，以防不必要的加载
-					$.detachInfiniteScroll($('.infinite-scroll'));
-					// 删除加载提示符
-					$('.infinite-scroll-preloader').remove();
+					// 隐藏提示符
+					$('.infinite-scroll-preloader').hide();
+				}else{
+					$('.infinite-scroll-preloader').show();
 				}
 				pageNum += 1;
 				loading = false;
@@ -95,7 +112,9 @@ $(function() {
 			}
 		});
 	}
-
+	
+	// 预计加载10条商品信息
+	addItems(pageSize, pageNum);
 
 	$(document).on('infinite', '.infinite-scroll-bottom', function() {
 		if (loading)
@@ -121,7 +140,7 @@ $(function() {
 					addItems(pageSize, pageNum);
 				}
 			});
-	//点击商品的卡片进入该商品的详情页
+	// 点击商品的卡片进入该商品的详情页
 	$('.list-div')
 			.on(
 					'click',
@@ -131,14 +150,14 @@ $(function() {
 						window.location.href = '/o2o/frontend/productdetail?productId='
 								+ productId;
 					});
-	//需要查询的商品名字发生变化，重置页码，情况原先的商品列表，按照新的名字去查询
-	$('#search').on('input', function(e) {
+	// 需要查询的商品名字发生变化，重置页码，情况原先的商品列表，按照新的名字去查询
+	$('#search').on('change', function(e) {
 		productName = e.target.value;
 		$('.list-div').empty();
 		pageNum = 1;
 		addItems(pageSize, pageNum);
 	});
-	//点击后打开右侧栏
+	// 点击后打开右侧栏
 	$('#me').click(function() {
 		$.openPanel('#panel-left-demo');
 	});

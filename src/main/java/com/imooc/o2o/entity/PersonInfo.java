@@ -2,83 +2,134 @@ package com.imooc.o2o.entity;
 
 import java.util.Date;
 
-/**
- * 用户信息
- * @author Gorgeous
- *
- */
 public class PersonInfo {
-	//用户id
+
 	private Long userId;
-	//姓名
 	private String name;
-	//头像地址
-	private String profileImg;
-	//邮箱
-	private String email;
-	//性别
+	private Date birthday;
 	private String gender;
-	//用户状态
-	private Integer enableStatus;
-	//用户身份标识 1:顾客 2:店家 3:超级管理员
-	private Integer userType;
-	//创建日期
+	private String phone;
+	private String email;
+	private String profileImg;
+	private Integer customerFlag;
+	private Integer shopOwnerFlag;
+	private Integer adminFlag;
 	private Date createTime;
-	//修改时间
 	private Date lastEditTime;
-	public Long getUserid() {
+	private Integer enableStatus;
+	private Integer UserType;
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserid(Long userid) {
-		this.userId = userid;
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getProfileImg() {
-		return profileImg;
+
+	public Date getBirthday() {
+		return birthday;
 	}
-	public void setProfileImg(String profileImg) {
-		this.profileImg = profileImg;
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Integer getEnableStatus() {
-		return enableStatus;
+
+	public String getPhone() {
+		return phone;
 	}
-	public void setEnableStatus(Integer enableStatus) {
-		this.enableStatus = enableStatus;
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public Integer getUserType() {
-		return userType;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setUserType(Integer userType) {
-		this.userType = userType;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
+	public Integer getCustomerFlag() {
+		return customerFlag;
+	}
+
+	public void setCustomerFlag(Integer customerFlag) {
+		this.customerFlag = customerFlag;
+	}
+
+	public Integer getShopOwnerFlag() {
+		return shopOwnerFlag;
+	}
+
+	public void setShopOwnerFlag(Integer shopOwnerFlag) {
+		this.shopOwnerFlag = shopOwnerFlag;
+	}
+
+	public Integer getAdminFlag() {
+		return adminFlag;
+	}
+
+	public void setAdminFlag(Integer adminFlag) {
+		this.adminFlag = adminFlag;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
+
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+
 	public Date getLastEditTime() {
 		return lastEditTime;
 	}
+
 	public void setLastEditTime(Date lastEditTime) {
 		this.lastEditTime = lastEditTime;
 	}
+
+	public Integer getEnableStatus() {
+		return enableStatus;
+	}
+
+	public void setEnableStatus(Integer enableStatus) {
+		this.enableStatus = enableStatus;
+	}
+
+	public Integer getUserType() {
+		return UserType;
+	}
+
+	public void setUserType(Integer userType) {
+		UserType = userType;
+	}
+
 	
+
 }

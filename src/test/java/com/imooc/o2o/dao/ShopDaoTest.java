@@ -24,7 +24,7 @@ public class ShopDaoTest extends BaseTest {
 	public void testQueryShopList() {
 		Shop shopCondition = new Shop();
 		PersonInfo owner = new PersonInfo();
-		owner.setUserid(1L);
+		owner.setUserId(1L);
 		shopCondition.setOwner(owner);
 		List<Shop> shopList = shopDao.queryShopList(shopCondition, 0, 5);
 		int count = shopDao.queryShopCount(shopCondition);
@@ -69,7 +69,7 @@ public class ShopDaoTest extends BaseTest {
 		PersonInfo owner = new PersonInfo();
 		Area area = new Area();
 		ShopCategory shopCategory = new ShopCategory();
-		owner.setUserid(1l);
+		owner.setUserId(1l);
 		area.setAreaId(2);
 		shopCategory.setShopCategoryId(1l);
 		shop.setOwner(owner);

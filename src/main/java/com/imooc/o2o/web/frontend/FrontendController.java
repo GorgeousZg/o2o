@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/frontend")
 public class FrontendController {
-
+	/**
+	 * 首页路由
+	 * @return
+	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	private String index() {
 		return "frontend/index";
@@ -17,17 +20,23 @@ public class FrontendController {
 	private String showMainPage() {
 		return "frontend/mainpage";
 	}
-
+	/**
+	 * 商品详情页路由
+	 * @return
+	 */
 	@RequestMapping(value = "/productdetail", method = RequestMethod.GET)
 	private String showProductDetail() {
 		return "frontend/productdetail";
 	}
-
+	//店铺详情页路由
 	@RequestMapping(value = "/shopdetail", method = RequestMethod.GET)
 	private String showShopDetail() {
 		return "frontend/shopdetail";
 	}
-
+	/**
+	 * 店铺列表页路由
+	 * @return
+	 */
 	@RequestMapping(value = "/shoplist", method = RequestMethod.GET)
 	private String showShopList() {
 		return "frontend/shoplist";

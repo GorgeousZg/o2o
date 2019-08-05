@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -35,8 +34,8 @@ public class ShopServiceTest extends BaseTest{
 		 shopCondition.setShopCategory(sc);
 		 ShopExecution se=shopService.getShopList(shopCondition, 1, 2);
 		 System.out.println(se);
-		 System.out.println("µêÆÌÁÐ±íÊýÎª:"+se.getShopList().size());
-		 System.out.println("µêÆÌ×ÜÊýÎª:"+se.getCount());
+		 System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Îª:"+se.getShopList().size());
+		 System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª:"+se.getCount());
 	}
 	
 	@Test
@@ -44,12 +43,12 @@ public class ShopServiceTest extends BaseTest{
 	public void testModifyShop() throws ShopOperationException,FileNotFoundException{
 		Shop shop=new Shop();
 		shop.setShopId(45L);
-		shop.setShopName("ÐÞ¸ÄºóµÄµêÆÌÃû³Æ");
+		shop.setShopName("ï¿½Þ¸Äºï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		File shopImg=new File("C:/Users/Gorgeous/Desktop/win.jpg");
 		InputStream is=new FileInputStream(shopImg);
 		ImageHolder imageHolder=new ImageHolder("dabai.jpg", is);
 		ShopExecution shopExecution=shopService.modifyShop(shop,imageHolder);
-		System.out.println("ÐÂµÄÍ¼Æ¬idÎª:"+shopExecution.getShop().getShopImg());
+		System.out.println("ï¿½Âµï¿½Í¼Æ¬idÎª:"+shopExecution.getShop().getShopImg());
 	}
 	
 	@Test
@@ -59,19 +58,19 @@ public class ShopServiceTest extends BaseTest{
 		 PersonInfo owner=new PersonInfo();
 		 Area area=new Area();
 		 ShopCategory shopCategory=new ShopCategory();
-		 owner.setUserid(1l);
+		 owner.setUserId(1l);
 		 area.setAreaId(2);
 		 shopCategory.setShopCategoryId(1l);
 		 shop.setOwner(owner);
 		 shop.setArea(area);
 		 shop.setShopCategory(shopCategory);
-		 shop.setShopName("²âÊÔµÄµêÆÌ3");
+		 shop.setShopName("ï¿½ï¿½ï¿½ÔµÄµï¿½ï¿½ï¿½3");
 		 shop.setShopDesc("test3");
 		 shop.setShopAddr("test3");
 		 shop.setPhone("test3");
 		 shop.setCreateTime(new Date());
 		 shop.setEnableStatus(ShopStateEnum.CHECK.getState());
-		 shop.setAdvice("ÉóºËÖÐ");
+		 shop.setAdvice("ï¿½ï¿½ï¿½ï¿½ï¿½");
 		 File showImg=new File("C:/Users/Gorgeous/Desktop/win.jpg");
 		 InputStream is=new FileInputStream(showImg);
 		 ImageHolder imageHolder=new ImageHolder(showImg.getName(),is);
