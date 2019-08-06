@@ -15,9 +15,8 @@ import com.imooc.o2o.dto.WechatAuthExecution;
 import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.WeChatAuth;
 import com.imooc.o2o.enums.WechatAuthStateEnum;
+import com.imooc.o2o.exceptions.WeChatAuthOperationException;
 import com.imooc.o2o.service.WechatAuthService;
-import com.imooc.o2o.util.FileUtil;
-import com.imooc.o2o.util.ImageUtil;
 
 @Service
 public class WechatAuthServiceImpl implements WechatAuthService {
@@ -35,66 +34,52 @@ public class WechatAuthServiceImpl implements WechatAuthService {
 
 	@Override
 	@Transactional
-	public WechatAuthExecution register(WeChatAuth wechatAuth,
-			ImageHolder profileImg) throws RuntimeException {
+	public WechatAuthExecution register(WeChatAuth wechatAuth) throws WeChatAuthOperationException {
+		//空值判断
 		if (wechatAuth == null || wechatAuth.getOpenId() == null) {
 			return new WechatAuthExecution(WechatAuthStateEnum.NULL_AUTH_INFO);
 		}
 		try {
+			//设置创建时间
 			wechatAuth.setCreateTime(new Date());
-			if (wechatAuth.getPersonInfo() != null
-					&& wechatAuth.getPersonInfo().getUserId() == null) {
-				if (profileImg != null) {
-					try {
-						addProfileImg(wechatAuth, profileImg);
-					} catch (Exception e) {
-						log.debug("addUserProfileImg error:" + e.toString());
-						throw new RuntimeException("addUserProfileImg error: "
-								+ e.getMessage());
-					}
-				}
+			//如果微信账号里夹带着用户信息并且用户ID为空，则认为该用户第一次使用平台，且通过微信登录
+			//则自动创建用户信息
+			if (wechatAuth.getPersonInfo() != null&& wechatAuth.getPersonInfo().getUserId() == null) {
 				try {
 					wechatAuth.getPersonInfo().setCreateTime(new Date());
-					wechatAuth.getPersonInfo().setLastEditTime(new Date());
-					wechatAuth.getPersonInfo().setCustomerFlag(1);
-					wechatAuth.getPersonInfo().setShopOwnerFlag(1);
-					wechatAuth.getPersonInfo().setAdminFlag(0);
 					wechatAuth.getPersonInfo().setEnableStatus(1);
 					PersonInfo personInfo = wechatAuth.getPersonInfo();
 					int effectedNum = personInfoDao
 							.insertPersonInfo(personInfo);
 					wechatAuth.setPersonInfo(wechatAuth.getPersonInfo());
 					if (effectedNum <= 0) {
-						throw new RuntimeException("添加用户信息失败");
+						throw new WeChatAuthOperationException("添加用户信息失败");
 					}
 				} catch (Exception e) {
 					log.debug("insertPersonInfo error:" + e.toString());
-					throw new RuntimeException("insertPersonInfo error: "
+					throw new WeChatAuthOperationException("insertPersonInfo error: "
 							+ e.getMessage());
 				}
 			}
+			//创建专属于本平台的微信账号
 			int effectedNum = wechatAuthDao.insertWechatAuth(wechatAuth);
 			if (effectedNum <= 0) {
-				throw new RuntimeException("帐号创建失败");
+				throw new WeChatAuthOperationException("帐号创建失败");
 			} else {
 				return new WechatAuthExecution(WechatAuthStateEnum.SUCCESS,
 						wechatAuth);
 			}
 		} catch (Exception e) {
 			log.debug("insertWechatAuth error:" + e.toString());
-			throw new RuntimeException("insertWechatAuth error: "
+			throw new WeChatAuthOperationException("insertWechatAuth error: "
 					+ e.getMessage());
 		}
 	}
 
-	private void addProfileImg(WeChatAuth wechatAuth,
+	/*private void addProfileImg(WeChatAuth wechatAuth,
 			ImageHolder profileImg) {
 		String dest = FileUtil.getPersonInfoImagePath();
 		String profileImgAddr = ImageUtil.generateThumbnail(profileImg, dest);
 		wechatAuth.getPersonInfo().setProfileImg(profileImgAddr);
-	}
-
-
-
-
+	}*/
 }

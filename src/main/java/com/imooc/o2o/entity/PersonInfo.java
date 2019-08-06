@@ -11,9 +11,6 @@ public class PersonInfo {
 	private String phone;
 	private String email;
 	private String profileImg;
-	private Integer customerFlag;
-	private Integer shopOwnerFlag;
-	private Integer adminFlag;
 	private Date createTime;
 	private Date lastEditTime;
 	private Integer enableStatus;
@@ -74,29 +71,6 @@ public class PersonInfo {
 		this.profileImg = profileImg;
 	}
 
-	public Integer getCustomerFlag() {
-		return customerFlag;
-	}
-
-	public void setCustomerFlag(Integer customerFlag) {
-		this.customerFlag = customerFlag;
-	}
-
-	public Integer getShopOwnerFlag() {
-		return shopOwnerFlag;
-	}
-
-	public void setShopOwnerFlag(Integer shopOwnerFlag) {
-		this.shopOwnerFlag = shopOwnerFlag;
-	}
-
-	public Integer getAdminFlag() {
-		return adminFlag;
-	}
-
-	public void setAdminFlag(Integer adminFlag) {
-		this.adminFlag = adminFlag;
-	}
 
 	public Date getCreateTime() {
 		return createTime;

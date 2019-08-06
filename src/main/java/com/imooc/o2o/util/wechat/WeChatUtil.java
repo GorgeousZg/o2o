@@ -83,6 +83,8 @@ public class WeChatUtil {
 	 */
 	public static WeChatUser getUserInfo(String accessToken, String openId) {
 		// 根据传入的accessToken以及openId拼接出访问微信定义的端口并获取用户信息的URL
+		System.out.println("accessToken--"+accessToken);
+		System.out.println("openId--"+openId);
 		String url = "https://api.weixin.qq.com/sns/userinfo?access_token=" + accessToken + "&openid=" + openId
 				+ "&lang=zh_CN";
 		// 访问该URL获取用户信息json 字符串
@@ -92,6 +94,8 @@ public class WeChatUtil {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			// 将json字符串转换成相应对象
+			System.out.println("userStr-->"+userStr);
+			System.out.println("user-->"+user);
 			user = objectMapper.readValue(userStr, WeChatUser.class);
 		} catch (JsonParseException e) {
 			log.error("获取用户信息失败: " + e.getMessage());
@@ -118,7 +122,7 @@ public class WeChatUtil {
 	 */
 	public static PersonInfo getPersonInfoFromRequest(WeChatUser user) {
 		PersonInfo personInfo = new PersonInfo();
-		personInfo.setName(user.getNickName());
+		personInfo.setName(user.getNickname());
 		personInfo.setGender(user.getSex() + "");
 		personInfo.setProfileImg(user.getHeadimgurl());
 		personInfo.setEnableStatus(1);

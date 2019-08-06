@@ -1,6 +1,7 @@
 package com.imooc.o2o.util.wechat;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class WeChatUser implements Serializable {
 
@@ -9,64 +10,87 @@ public class WeChatUser implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
+//	private int id;
+//
+//	private String openId;
+//
+//	private String nickName;
+//
+//	private int sex;
+//
+//	private String province;
+//
+//	private String city;
+//
+//	private String country;
+//
+//	private String headimgurl;
+//
+//	private String privilege;
+//
+//	private String unionid;
+	
+	private Integer id;
 
-	private String openId;
+	private String openid;
 
-	private String nickName;
+	private String nickname;
 
-	private int sex;
-
-	private String province;
+	private Integer sex;
+	
+	private String language;
+	
 
 	private String city;
+	
+	private String province;
 
 	private String country;
 
 	private String headimgurl;
 
-	private String privilege;
+	private String privilege[];
 
 	private String unionid;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getOpenId() {
-		return openId;
+	public String getOpenid() {
+		return openid;
 	}
 
-	public void setOpenId(String openId) {
-		this.openId = openId;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public int getSex() {
+	public Integer getSex() {
 		return sex;
 	}
 
-	public void setSex(int sex) {
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
 
-	public String getProvince() {
-		return province;
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setProvince(String province) {
-		this.province = province;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public String getCity() {
@@ -75,6 +99,14 @@ public class WeChatUser implements Serializable {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
 	}
 
 	public String getCountry() {
@@ -93,11 +125,13 @@ public class WeChatUser implements Serializable {
 		this.headimgurl = headimgurl;
 	}
 
-	public String getPrivilege() {
+
+
+	public String[] getPrivilege() {
 		return privilege;
 	}
 
-	public void setPrivilege(String privilege) {
+	public void setPrivilege(String[] privilege) {
 		this.privilege = privilege;
 	}
 
@@ -111,6 +145,12 @@ public class WeChatUser implements Serializable {
 
 	@Override
 	public String toString() {
-		return "openId:" + this.getOpenId() + ",nikename:" + this.getNickName();
+		return "WeChatUser [id=" + id + ", openid=" + openid + ", nickname=" + nickname + ", sex=" + sex + ", language="
+				+ language + ", city=" + city + ", province=" + province + ", country=" + country + ", headimgurl="
+				+ headimgurl + ", privilege=" + Arrays.toString(privilege) + ", unionid=" + unionid + "]";
 	}
+
+
+	
+	
 }

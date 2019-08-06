@@ -26,14 +26,14 @@ public interface PersonInfoDao {
 			@Param("personInfoCondition") PersonInfo personInfoCondition);
 
 	/**
-	 * 
+	 * 通过用户Id查询用户
 	 * @param userId
 	 * @return
 	 */
 	PersonInfo queryPersonInfoById(long userId);
 
 	/**
-	 * 
+	 * 添加用户信息
 	 * @param wechatAuth
 	 * @return
 	 */

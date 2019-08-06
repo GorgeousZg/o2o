@@ -49,8 +49,10 @@ public class WechatLoginController {
 	@RequestMapping(value = "/logincheck", method = { RequestMethod.GET })
     public String doGet(HttpServletRequest request, HttpServletResponse response) {
         log.debug("weixin login get...");
+        
         // 获取微信公众号传输过来的code,通过code可获取access_token,进而获取用户信息
         String code = request.getParameter("code");
+        System.out.println("code->"+code);
         // 这个state可以用来传我们自定义的信息，方便程序调用，这里也可以不用
         // String roleType = request.getParameter("state");
         log.debug("weixin login code:" + code);
@@ -63,9 +65,9 @@ public class WechatLoginController {
                 token = WeChatUtil.getUserAccessToken(code);
                 log.debug("weixin login token:" + token.toString());
                 // 通过token获取accessToken
-                String accessToken = token.getAccessToken();
+                String accessToken = token.getAccess_token();
                 // 通过token获取openId
-                openId = token.getOpenId();
+                openId = token.getOpenid();
                 // 通过access_token和openId获取用户昵称等信息
                 user = WeChatUtil.getUserInfo(accessToken, openId);
                 log.debug("weixin login user:" + user.toString());
