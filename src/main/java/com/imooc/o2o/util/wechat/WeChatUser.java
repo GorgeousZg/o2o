@@ -2,7 +2,11 @@ package com.imooc.o2o.util.wechat;
 
 import java.io.Serializable;
 import java.util.Arrays;
-
+/**
+ * 微信用戶
+ * @author Gorgeous
+ *
+ */
 public class WeChatUser implements Serializable {
 
 	/**

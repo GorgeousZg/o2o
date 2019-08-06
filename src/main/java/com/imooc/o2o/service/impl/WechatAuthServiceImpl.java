@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.imooc.o2o.dao.PersonInfoDao;
 import com.imooc.o2o.dao.WeChatAuthDao;
-import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.WechatAuthExecution;
 import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.WeChatAuth;
