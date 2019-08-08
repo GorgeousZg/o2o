@@ -7,7 +7,7 @@
 		<id column="local_auth_id" property="localAuthId" />
 		<result column="user_name" property="userName" />
 		<result column="password" property="password" />
-		<result column="create_time" property="createTime" />
+		<result column="create_time" property="createtime" />
 		<result column="last_edit_time" property="lastEditTime" />
 		<association property="personInfo" column="user_id"
 			javaType="com.imooc.o2o.entity.PersonInfo">
@@ -36,7 +36,6 @@
 		p.gender,
 		p.email,
 		p.profile_img,
-		p.phone,
 		p.user_type,
 		p.create_time,
 		p.last_edit_time,
@@ -65,11 +64,9 @@
 		p.user_id,
 		p.name,
 		p.gender,
-		p.birthday,
 		p.email,
 		p.profile_img,
-		p.phone,
-		p.user_type
+		p.user_type,
 		p.create_time,
 		p.last_edit_time,
 		p.enable_status
@@ -99,7 +96,7 @@
 			<if test="lastEditTime != null">last_edit_time=#{lastEditTime}</if>
 		</set>
 		where user_id=#{userId}
-		AND user_name=#{userName}
+		AND username=#{userName}
 		AND
 		password=#{password}
 	</update>

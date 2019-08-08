@@ -16,32 +16,46 @@ public class LocalAuthDaoTest extends BaseTest {
 	private LocalAuthDao localAuthDao;
 	private static final String username = "testusername";
 	private static final String password = "testpassword";
+
 	@Test
-	public void testAInsertLocalAuth() throws Exception{
-		//新增一条平台账号信息
-		LocalAuth localAuth=new LocalAuth();
-		PersonInfo personInfo=new PersonInfo();
+	public void testAInsertLocalAuth() throws Exception {
+		// 新增一条平台账号信息
+		LocalAuth localAuth = new LocalAuth();
+		PersonInfo personInfo = new PersonInfo();
 		personInfo.setUserId(18L);
-		//给平台账号绑定上用户信息
+		// 给平台账号绑定上用户信息
 		localAuth.setPersonInfo(personInfo);
-		//设置上用户名和密码
+		// 设置上用户名和密码
 		localAuth.setUsername(username);
 		localAuth.setPassword(password);
 		localAuth.setCreatetime(new Date());
-		int effectedNum=localAuthDao.insertLocalAuth(localAuth);
+		int effectedNum = localAuthDao.insertLocalAuth(localAuth);
+		assertEquals(1, effectedNum);
+	}
+
+	@Test
+	public void testBQueryLocalByUserNameAndPwd() throws Exception {
+		// 按照账号和密码查询用户信息
+		LocalAuth localAuth = localAuthDao.queryLocalByUserNameAndPwd(username, password);
+		assertEquals("薄荷绿°", localAuth.getPersonInfo().getName());
+	}
+
+	@Test
+	public void testCQueryLocalByUserId() throws Exception {
+		// 按照用户Id查询平台账号，进而获取用户信息
+		LocalAuth localAuth = localAuthDao.queryLocalByUserId(18L);
+		assertEquals("薄荷绿°", localAuth.getPersonInfo().getName());
+	}
+
+	@Test
+	public void testDUpdateLocalAuth() throws Exception {
+		// 依据用户ID平台账号，以及旧密码修改平台账号密码
+		Date now = new Date();
+		int effectedNum=localAuthDao.updateLocalAuth(18L, username, password, password+"new", now);
 		assertEquals(1,effectedNum);
-	}
-	@Test
-	public void testBQueryLocalByUserNameAndPwd() throws Exception{
-		//按照账号和密码查询用户信息
-		LocalAuth localAuth=localAuthDao.queryLocalByUserNameAndPwd(username, password);
-		assertEquals("测试",localAuth.getPersonInfo().getName());
-	}
-	@Test
-	public void testCQueryLocalByUserId() throws Exception{
-		//按照用户Id查询平台账号，进而获取用户信息
 		LocalAuth localAuth=localAuthDao.queryLocalByUserId(18L);
-		assertEquals("测试",localAuth.getPersonInfo().getName());
+		//输出新密码
+		System.out.println(localAuth.getPassword());
 	}
 
 }

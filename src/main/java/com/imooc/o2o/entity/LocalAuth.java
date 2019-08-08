@@ -10,6 +10,7 @@ import java.util.Date;
 public class LocalAuth {
 	//本地账号id
 	private Long localAuthId;
+	
 	//用户名
 	private String username;
 	//密码
