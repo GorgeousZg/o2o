@@ -175,7 +175,12 @@
 			<artifactId>javase</artifactId>
 			<version>3.3.0</version>
 		</dependency>
-		
+		<!-- redis客户端:Jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 		
 		
 	</dependencies>

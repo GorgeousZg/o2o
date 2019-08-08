@@ -104,7 +104,7 @@ public class WechatLoginController {
 		if(FRONTEND.equals(roleType)){
 			return "frontend/index";
 		}else{
-			return "shopadmin/shoplist";
+			return "shop/shoplist";
 		}
 	}
 }

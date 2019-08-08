@@ -12,9 +12,14 @@ import com.imooc.o2o.entity.Area;
 public class AreaServiceTest extends BaseTest{
 	@Autowired
 	private AreaService areaService;
+	
+	@Autowired
+	private CacheService CacheService;
 	@Test
 	public void testGetAreaList(){
 		List<Area> areaList=areaService.getAreaList();
-		assertEquals("Î÷Ô·",areaList.get(0).getAreaName());
+		assertEquals("¶«Ô·",areaList.get(0).getAreaName());
+		CacheService.removeFromCache(AreaService.AREALISTKEY);
+		areaList=areaService.getAreaList();
 	}
 }

@@ -28,7 +28,7 @@ import com.imooc.o2o.enums.ShopStateEnum;
 import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopService;
-import com.imooc.o2o.service.impl.ShopCategorySerivce;
+import com.imooc.o2o.service.impl.ShopCategorySerivceImpl;
 import com.imooc.o2o.util.CodeUtil;
 import com.imooc.o2o.util.HttpServletRequestUtil;
 
@@ -38,7 +38,7 @@ public class ShopManagementController {
 	@Autowired
 	private ShopService shopService;
 	@Autowired
-	private ShopCategorySerivce shopCategorySerivce;
+	private ShopCategorySerivceImpl shopCategorySerivce;
 	@Autowired
 	private AreaService areaService;
 	

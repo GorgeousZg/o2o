@@ -18,7 +18,7 @@ public class LocalAuth {
 	private Date createtime;
 	//修改时间
 	private Date lastEditTime;
-	//用户实体类
+	//个人信息，用户实体类
 	private PersonInfo personInfo;
 	public Long getLocalAuthId() {
 		return localAuthId;
