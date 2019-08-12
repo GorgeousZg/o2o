@@ -74,11 +74,10 @@ public class ShopManagementController {
 	private Map<String,Object> getShoplist(HttpServletRequest request){
 		Map<String,Object> modelMap=new HashMap<String,Object>();
 		PersonInfo user=new PersonInfo();
-		user.setUserId(1L);
-		user.setName("test");
+		user.setUserId(18L);
+		user.setName("薄荷绿°");
 		request.getSession().setAttribute("user", user);
 	    user=(PersonInfo)request.getSession().getAttribute("user");
-		user.setUserId(1L);
 		try{
 			Shop shopCondition=new Shop();
 			shopCondition.setOwner(user);

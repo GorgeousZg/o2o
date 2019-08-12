@@ -108,18 +108,21 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 			return new LocalAuthExecution(LocalAuthStateEnum.ONLY_ONE_ACCOUNT);
 		}
 		try {
+			//如果之前没有绑定过平台账号，则创建一个平台账号与该用户绑定
 			localAuth.setCreatetime(new Date());
 			localAuth.setLastEditTime(new Date());
+			//对密码进行MD5加密
 			localAuth.setPassword(MD5.getMd5(localAuth.getPassword()));
 			int effectedNum = localAuthDao.insertLocalAuth(localAuth);
+			//判断创建示范成功
 			if (effectedNum <= 0) {
-				throw new RuntimeException("帐号绑定失败");
+				throw new LocalAuthOperationException("帐号绑定失败");
 			} else {
 				return new LocalAuthExecution(LocalAuthStateEnum.SUCCESS,
 						localAuth);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("insertLocalAuth error: "
+			throw new LocalAuthOperationException("insertLocalAuth error: "
 					+ e.getMessage());
 		}
 	}
@@ -128,18 +131,21 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 	@Transactional
 	public LocalAuthExecution modifyLocalAuth(Long userId, String userName,
 			String password, String newPassword) {
+		//非空判断，判断传入的用户ID，新旧密码是否为空，新旧密码是否相同，若不满足条件则返回错误信息
 		if (userId != null && userName != null && password != null
 				&& newPassword != null && !password.equals(newPassword)) {
 			try {
+				//更新密码，并对新密码进行MD5加密
 				int effectedNum = localAuthDao.updateLocalAuth(userId,
 						userName, MD5.getMd5(password),
 						MD5.getMd5(newPassword), new Date());
+				//判断更新是否成功
 				if (effectedNum <= 0) {
-					throw new RuntimeException("更新密码失败");
+					throw new LocalAuthOperationException("更新密码失败");
 				}
 				return new LocalAuthExecution(LocalAuthStateEnum.SUCCESS);
 			} catch (Exception e) {
-				throw new RuntimeException("更新密码失败:" + e.toString());
+				throw new LocalAuthOperationException("更新密码失败:" + e.toString());
 			}
 		} else {
 			return new LocalAuthExecution(LocalAuthStateEnum.NULL_AUTH_INFO);
