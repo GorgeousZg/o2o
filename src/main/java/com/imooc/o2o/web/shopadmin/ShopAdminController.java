@@ -22,7 +22,7 @@ public class ShopAdminController {
     	//转发至店铺列表页面
    		return "shop/shoplist";
    	}						
-    @RequestMapping(value="/shopmanagement")
+    @RequestMapping(value="/shopmanagent")
    	public String shopManagement() {
     	//转发至店铺管理页面
    		return "shop/shopmanagent";

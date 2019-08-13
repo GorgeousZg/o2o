@@ -52,7 +52,7 @@
 			<mvc:exclude-mapping path="/shopadmin/registershop" />
 			<mvc:exclude-mapping path="/shopadmin/shopoperation"/>
 			<!-- shopmanage page -->
-			<mvc:exclude-mapping path="/shopadmin/shopmanagement"/>
+			<mvc:exclude-mapping path="/shopadmin/shopmanagent" />
 			<mvc:exclude-mapping path="/shopadmin/getshopmanagementinfo"/>
 			<bean id="ShopPermissionInterceptor"
 				class="com.imooc.o2o.interceptor.shopadmin.ShopPermissionInterceptor" />
