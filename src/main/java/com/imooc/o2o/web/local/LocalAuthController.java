@@ -1,5 +1,7 @@
 package com.imooc.o2o.web.local;
 
+import java.text.MessageFormat;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +31,13 @@ public class LocalAuthController {
 	@RequestMapping(value = "/bindlocalauth", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> bindLocalAuth(HttpServletRequest request) {
+		Enumeration<String> paramNames = request.getParameterNames();//获取所有的参数名
+		System.out.println("verifyCodeActual-->"+request.getParameter("verifyCodeActual"));
+	       while (paramNames.hasMoreElements()) {
+	           String name = paramNames.nextElement();//得到参数名
+	           String value = request.getParameter(name);//通过参数名获取对应的值
+	           System.out.println(MessageFormat.format("{0}={1}", name,value));
+	       }
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		// 验证码校验
 		if (!CodeUtil.checkVerifyCode(request)) {
@@ -68,6 +77,14 @@ public class LocalAuthController {
 	@ResponseBody
 	private Map<String, Object> changeLocalPwd(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
+		Enumeration<String> paramNames = request.getParameterNames();//获取所有的参数名
+		System.out.println("verifyCodeActual-->"+request.getParameter("verifyCodeActual"));
+	       while (paramNames.hasMoreElements()) {
+	           String name = paramNames.nextElement();//得到参数名
+	           String value = request.getParameter(name);//通过参数名获取对应的值
+	           System.out.println(MessageFormat.format("{0}={1}", name,value));
+	       }
+
 		// 验证码校验
 		if (!CodeUtil.checkVerifyCode(request)) {
 			modelMap.put("success", false);
@@ -79,23 +96,29 @@ public class LocalAuthController {
 		// 获取原密码
 		String password = HttpServletRequestUtil.getString(request, "password");
 		// 获取新密码
-		String newPassword = HttpServletRequestUtil.getString(request, "newPasswors");
+		String newPassword = HttpServletRequestUtil.getString(request, "newPassword");
 		// 从session中获取当前用户信息(用户一旦通过微信登录之后，便能获取到用户的信息)
 		PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
 		// 非空判断
+		System.out.println("userName-->"+userName);
+		System.out.println("password-->"+password);
+		System.out.println("newPassword-->"+newPassword);
+		System.out.println("user-->"+userName);
+		System.out.println("user.getUserId()-->"+user.getUserId());
+		System.out.println("password.equals(newPassword)-->"+password.equals(newPassword));
 		if (userName != null && password != null && newPassword != null && user != null && user.getUserId() != null
 				&& !password.equals(newPassword)) {
 			try {
 				// 查看原先账号，看看与输入的账号是否一致，不一致则认为是非法操作
 				LocalAuth localAuth = localAuthService.getLocalAuthByUserId(user.getUserId());
-				if (localAuth != null || !localAuth.getUsername().equals(userName)) {
+				if (localAuth == null || !localAuth.getUsername().equals(userName)) {
 					// 不一致则直接退出
 					modelMap.put("success", false);
 					modelMap.put("errMsg", "输入的账号非本地登录的账号");
 					return modelMap;
 				}
 				// 修改平台账号的用户密码
-				LocalAuthExecution le = localAuthService.modifyLocalAuth(user.getUserId(), newPassword, password,
+				LocalAuthExecution le = localAuthService.modifyLocalAuth(user.getUserId(), userName, password,
 						newPassword);
 				if (le.getState() == LocalAuthStateEnum.SUCCESS.getState()) {
 					modelMap.put("success", true);

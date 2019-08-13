@@ -29,8 +29,10 @@ public class HttpServletRequestUtil {
 	
 	public static String getString(HttpServletRequest request,String key){
 		try{
+			System.out.println("key-->"+key);
 			String result= request.getParameter(key);
 			if(result!=null){
+				System.out.println("result-->"+result);
 				result=result.trim();
 			}
 			if("".equals(result)){

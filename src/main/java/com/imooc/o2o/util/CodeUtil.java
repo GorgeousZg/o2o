@@ -7,6 +7,8 @@ public class CodeUtil {
 		String verifyCodeExpected=(String)request.getSession().getAttribute(
 				com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
 		String verifyCodeActual=HttpServletRequestUtil.getString(request, "verifyCodeActual");
+		System.out.println("verifyCodeActualfont-->"+verifyCodeActual);
+		System.out.println("verifyCodeExpected-->"+verifyCodeExpected);
 		if(verifyCodeActual==null||!verifyCodeActual.equals(verifyCodeExpected)){
 			return false;
 		}else{

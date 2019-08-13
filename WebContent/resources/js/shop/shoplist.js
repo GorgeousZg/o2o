@@ -1,4 +1,5 @@
 $(function() {
+	alert('123')
 	getlist();
 	function getlist(e) {
 		$.ajax({

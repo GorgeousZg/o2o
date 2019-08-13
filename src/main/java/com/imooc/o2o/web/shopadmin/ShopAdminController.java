@@ -21,8 +21,8 @@ public class ShopAdminController {
    	public String shopList() {
     	//转发至店铺列表页面
    		return "shop/shoplist";
-   	}
-    @RequestMapping(value="/shopmanagent")
+   	}						
+    @RequestMapping(value="/shopmanagement")
    	public String shopManagement() {
     	//转发至店铺管理页面
    		return "shop/shopmanagent";

@@ -4,6 +4,7 @@
 $(function(){
 	$('#log-out').click(function(){
 		//清除session
+		alert("123")
 		$.ajax({
 			url:"/o2o/local/logout",
 			type:"post",

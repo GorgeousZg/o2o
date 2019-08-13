@@ -5,7 +5,7 @@
 <mapper namespace="com.imooc.o2o.dao.LocalAuthDao">
 	<resultMap id="localAuthResultMap" type="com.imooc.o2o.entity.LocalAuth">
 		<id column="local_auth_id" property="localAuthId" />
-		<result column="user_name" property="userName" />
+		<result column="username" property="username" />
 		<result column="password" property="password" />
 		<result column="create_time" property="createtime" />
 		<result column="last_edit_time" property="lastEditTime" />

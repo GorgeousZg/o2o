@@ -47,7 +47,6 @@ public class ShopManagementController {
 	private Map<String,Object> getShopManagementInfo(HttpServletRequest request){
 		Map<String,Object> modelMap=new HashMap<String,Object>();
 		Long shopId=HttpServletRequestUtil.getLong(request, "shopId");
-		
 		if(shopId<=0){
 			Object currentShopObj=request.getSession().getAttribute("currentShop");
 			if(currentShopObj==null){
@@ -73,16 +72,14 @@ public class ShopManagementController {
 	@ResponseBody
 	private Map<String,Object> getShoplist(HttpServletRequest request){
 		Map<String,Object> modelMap=new HashMap<String,Object>();
-		PersonInfo user=new PersonInfo();
-		user.setUserId(18L);
-		user.setName("薄荷绿°");
-		request.getSession().setAttribute("user", user);
-	    user=(PersonInfo)request.getSession().getAttribute("user");
+		PersonInfo user=(PersonInfo)request.getSession().getAttribute("user");
 		try{
 			Shop shopCondition=new Shop();
 			shopCondition.setOwner(user);
 			ShopExecution se=shopService.getShopList(shopCondition, 0, 100);
+			//列出店铺成功之后，将店铺放入session中作为权限验证依据，即该账号只能操作它自己的店铺
 			modelMap.put("shopList", se.getShopList());
+			request.getSession().setAttribute("shopList", se.getShopList());
 			modelMap.put("user",user);
 			modelMap.put("success", true);
 		}catch (Exception e) {
@@ -193,7 +190,7 @@ public class ShopManagementController {
 		}
 		return modelMap;
 	}
-
+	
 	@RequestMapping(value = "/registershop", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> registerShop(HttpServletRequest request) {
@@ -228,7 +225,6 @@ public class ShopManagementController {
 		// 2.注册店铺
 		if (shop != null && shopImg != null) {
 			PersonInfo owner = (PersonInfo) request.getSession().getAttribute("user");
-			// PersonInfo owner=new PersonInfo();
 			System.out.println("owner-->" + owner);
 			owner.setUserId(1L);
 			shop.setOwner(owner);

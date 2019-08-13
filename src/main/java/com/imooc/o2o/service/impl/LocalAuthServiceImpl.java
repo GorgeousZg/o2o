@@ -136,6 +136,10 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 				&& newPassword != null && !password.equals(newPassword)) {
 			try {
 				//更新密码，并对新密码进行MD5加密
+				System.out.println("userId-->"+userId);
+				System.out.println("userName-->"+userName);
+				System.out.println("password-->"+MD5.getMd5(password));
+				System.out.println("newPassword-->"+MD5.getMd5(newPassword));
 				int effectedNum = localAuthDao.updateLocalAuth(userId,
 						userName, MD5.getMd5(password),
 						MD5.getMd5(newPassword), new Date());
