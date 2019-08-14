@@ -42,7 +42,7 @@ public class ShopManagementController {
 	@Autowired
 	private AreaService areaService;
 	
-	@RequestMapping(value="getShopManagementInfo",method=RequestMethod.GET)
+	@RequestMapping(value="/getshopmanagementinfo",method=RequestMethod.GET)
 	@ResponseBody
 	private Map<String,Object> getShopManagementInfo(HttpServletRequest request){
 		Map<String,Object> modelMap=new HashMap<String,Object>();
@@ -68,7 +68,7 @@ public class ShopManagementController {
 	}
 	
 	
-	@RequestMapping(value="getshoplist",method=RequestMethod.GET)
+	@RequestMapping(value="/getshoplist",method=RequestMethod.GET)
 	@ResponseBody
 	private Map<String,Object> getShoplist(HttpServletRequest request){
 		Map<String,Object> modelMap=new HashMap<String,Object>();
@@ -89,7 +89,7 @@ public class ShopManagementController {
 		return modelMap;
 	}
 
-	@RequestMapping(value = "getshopbyid", method = RequestMethod.GET)
+	@RequestMapping(value = "/getshopbyid", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopById(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();

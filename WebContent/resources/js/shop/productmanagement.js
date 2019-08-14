@@ -30,7 +30,7 @@ $(function() {
 							+ item.productName
 							+ '</div>'
 							+ '<div class="col-33">'
-							+ item.priority
+							+ item.point
 							+ '</div>'
 							+ '<div class="col-33">'
 							+ '<a href="#" class="edit" data-id="'

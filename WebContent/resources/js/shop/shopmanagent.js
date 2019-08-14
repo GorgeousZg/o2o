@@ -1,8 +1,8 @@
 $(function() {
-	alert("123")
 	var shopId = getQueryString('shopId');
-	var shopInfoUrl = '/o2o/shopadmin/getShopManagementInfo?shopId=' + shopId;
+	var shopInfoUrl = '/o2o/shopadmin/getshopmanagementinfo?shopId=' + shopId;
 	$.getJSON(shopInfoUrl, function(data) {
+		console.log(data)
 		if (data.redirect) {
 			window.location.href = data.url;
 		} else {

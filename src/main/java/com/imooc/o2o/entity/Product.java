@@ -21,6 +21,7 @@ public class Product implements Serializable{
 	private String normalPrice;
 	private String promotionPrice;
 	private Integer priority;
+	private Integer point;
 	private Date createTime;
 	private Date lastEditTime;
 	//0.下架 1.在前端展示系统
@@ -133,15 +134,13 @@ public class Product implements Serializable{
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
-	
-	@Override
-	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc
-				+ ", imgAddr=" + imgAddr + ", normalPrice=" + normalPrice + ", promotionPrice=" + promotionPrice
-				+ ", priority=" + priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime
-				+ ", enableStatus=" + enableStatus + ", productImgList=" + productImgList + ", productCategory="
-				+ productCategory + ", shop=" + shop + "]";
+
+	public Integer getPoint() {
+		return point;
 	}
-	
+
+	public void setPoint(Integer point) {
+		this.point = point;
+	}
 
 }
